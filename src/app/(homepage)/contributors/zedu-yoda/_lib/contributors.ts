@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-export interface FlamingoContributor {
+export interface YodaContributor {
   id: string;
   fullName: string;
   zeduUsername: string;
@@ -9,13 +9,13 @@ export interface FlamingoContributor {
 
 const CSV_PATH = path.join(
   process.cwd(),
-  "src/app/(homepage)/contributors/zedu-flamingo/_lib/contributors.csv"
+  "src/app/(homepage)/contributors/zedu-yoda/_lib/contributors.csv"
 );
 
 // Maps normalised header text to a field, so column order in the sheet
 // doesn't matter and small wording differences are tolerated. Any other
 // columns in the sheet are ignored.
-const HEADER_ALIASES: Record<string, keyof Omit<FlamingoContributor, "id">> = {
+const HEADER_ALIASES: Record<string, keyof Omit<YodaContributor, "id">> = {
   fullname: "fullName",
   name: "fullName",
   zeduusername: "zeduUsername",
@@ -66,9 +66,7 @@ function parseCsv(text: string): string[][] {
   return rows;
 }
 
-export async function getFlamingoContributors(): Promise<
-  FlamingoContributor[]
-> {
+export async function getYodaContributors(): Promise<YodaContributor[]> {
   // Let a missing or unreadable CSV fail the build instead of rendering an
   // empty board.
   const text = await readFile(CSV_PATH, "utf8");
@@ -83,8 +81,8 @@ export async function getFlamingoContributors(): Promise<
 
   return dataRows
     .map((cells, index) => {
-      const record: FlamingoContributor = {
-        id: `flamingo-${index}`,
+      const record: YodaContributor = {
+        id: `yoda-${index}`,
         fullName: "",
         zeduUsername: "",
       };

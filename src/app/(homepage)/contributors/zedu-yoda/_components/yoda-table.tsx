@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Search } from "lucide-react";
-import type { FlamingoContributor } from "../_lib/contributors";
+import type { YodaContributor } from "../_lib/contributors";
 
 function initials(name: string) {
   return name
@@ -13,10 +13,10 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-export function FlamingoTable({
+export function YodaTable({
   contributors,
 }: {
-  contributors: FlamingoContributor[];
+  contributors: YodaContributor[];
 }) {
   const [searchQuery, setSearchQuery] = useState("");
 
